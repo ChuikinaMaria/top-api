@@ -8,7 +8,7 @@ import {
 	Patch,
 	Post,
 } from '@nestjs/common';
-import { ProductModel } from 'src/product/product.model';
+import { FindTopPageDto } from './dto/find-top-page.dto';
 import { TopPageModel } from './top-page.model';
 
 @Controller('top-page')
