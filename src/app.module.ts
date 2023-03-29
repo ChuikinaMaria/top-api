@@ -5,23 +5,27 @@ import { AuthModule } from './auth/auth.module';
 import { TopPageModule } from './top-page/top-page.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersModule } from './users/users.module';
-import { UsersService } from './users/users.service';
+import { getMongoConfig } from './configs/mongo.config';
 
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
-		MongooseModule.forRoot('mongodb://localhost/test'),
+		MongooseModule.forRoot('mongodb://admin:admin@localhost:27017'),
 		AuthModule,
 		TopPageModule,
 		ProductModule,
 		ReviewModule,
-		UsersModule,
 	],
 
 	controllers: [AppController],
-	providers: [AppService, UsersService],
+	providers: [AppService],
 })
 export class AppModule {}
+
+// MongooseModule.forRootAsync({
+// 			imports: [ConfigModule],
+// 			inject: [ConfigService],
+// 			useFactory: getMongoConfig,
+// 		})
