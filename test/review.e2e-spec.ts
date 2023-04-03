@@ -5,6 +5,7 @@ import { AppModule } from '../src/app.module';
 import { Types, disconnect } from 'mongoose';
 import { CreateReviewDto } from '../src/review/dto/create-review.dto';
 import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
+import { ReviewModel } from '../src/review/review.model';
 
 const productId = new Types.ObjectId().toHexString();
 
@@ -40,6 +41,16 @@ describe('AppController (e2e)', () => {
 			});
 	});
 
+	it('/review/create (POST) - fail', async () => {
+		return request(app.getHttpServer())
+			.post('/review/create')
+			.send({ ...testDto, rating: 0 })
+			.expect(400)
+			.then(({ body }: request.Response) => {
+				console.log(body);
+			});
+	});
+
 	it('/review/byProduct/:productId (GET)', async () => {
 		return request(app.getHttpServer())
 			.get('/review/byProduct/' + productId)
@@ -51,7 +62,7 @@ describe('AppController (e2e)', () => {
 
 	it('/review/byProduct/:productId (GET) - fail', async () => {
 		return request(app.getHttpServer())
-			.get('/review/byProduct/' + new Types.ObjectId().toHexString())
+			.get(`/review/byProduct/${new Types.ObjectId().toHexString()}`)
 			.expect(200)
 			.then(({ body }: request.Response) => {
 				expect(body.length).toBe(0);
