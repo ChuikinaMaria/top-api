@@ -8,6 +8,7 @@ import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
 import { ReviewModel } from '../src/review/review.model';
 
 const productId = new Types.ObjectId().toHexString();
+//console.log(productId);
 
 const testDto: CreateReviewDto = {
 	name: 'Test',
@@ -52,6 +53,7 @@ describe('AppController (e2e)', () => {
 	});
 
 	it('/review/byProduct/:productId (GET)', async () => {
+		//console.log('/review/byProduct/' + productId);
 		return request(app.getHttpServer())
 			.get('/review/byProduct/' + productId)
 			.expect(200)
