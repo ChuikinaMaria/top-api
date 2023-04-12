@@ -10,9 +10,9 @@ jobs:
     step: 
       -uses: actions/checkout@main
       -name: Publish to registry
-       uses: elhgohr/Publish-Docker-Github-Action@mail
+       uses: elgohr/Publish-Docker-Github-Action@mail
        with:
-        registry: docker.pkg.githyb.com
+        registry: docker.pkg.github.com
         name: docker.pkg.github.com//ChuikinaMaria/top-api/top-api
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
