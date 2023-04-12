@@ -10,7 +10,7 @@ jobs:
     step: 
       -uses: actions/checkout@main
       -name: Publish to registry
-       uses: elhgohr/Publish-Docker-Github-Action@main
+       uses: elhgohr/Publish-Docker-Github-Action@v5
        with:
         registry: docker.pkg.github.com
         name: docker.pkg.github.com//ChuikinaMaria/top-api/top-api
